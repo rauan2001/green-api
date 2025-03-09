@@ -56,14 +56,13 @@ async function sendFileByUrl() {
     const phoneNumber = document.getElementById("phoneNumber").value;
     const fileUrl = document.getElementById("fileUrl").value;
 
-    // Извлекаем корректное имя файла
     const fileName = extractFileName(fileUrl);
 
     const url = `https://api.green-api.com/waInstance${idInstance}/sendFileByUrl/${apiTokenInstance}`;
     const body = JSON.stringify({
         chatId: `${phoneNumber}@c.us`,
         urlFile: fileUrl,
-        fileName: fileName // Чистое имя файла без лишних параметров
+        fileName: fileName
     });
 
     try {
@@ -79,9 +78,8 @@ async function sendFileByUrl() {
     }
 }
 
-// Функция очистки имени файла
 function extractFileName(url) {
-    let fileName = url.split('/').pop(); // Берем последний сегмент
+    let fileName = url.split('/').pop();
     return fileName.split('?')[0]; // Убираем GET-параметры (если есть)
 }
 
